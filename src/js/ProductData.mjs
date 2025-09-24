@@ -21,3 +21,11 @@ export default class ProductData {
     return products.find((item) => item.Id === id);
   }
 }
+
+/* 
+If your website needs info about a tent with ID "abc123", this class will:
+Know the tents menu is at ../json/tents.json
+Fetch and check that file
+Search through all tents to find the one with ID "abc123"
+Return just that tent's information
+ */
