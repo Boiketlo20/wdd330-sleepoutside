@@ -5,7 +5,7 @@ function productCardTemplate(product){
         <li class="product-card">
             <a href="product_pages/index.html?product=${product.Id}">
               <img
-                src="${product.Image}"
+                src="${product.Images.PrimaryMedium}"
                 alt="${product.NameWithoutBrand}"
               />
               <h3 class="card__brand">${product.Brand?.Name || ""}</h3>
@@ -27,13 +27,16 @@ export default class ProductList{
     }
 
     async init(){
-        const list = await this.dataSource.getData();
-        // next, render the list
+        const list = await this.dataSource.getData(this.category);
         this.renderList(list);
+        document.querySelector(".title").textContent = this.category;
     }
 
     renderList(list){
-        // apply use new utility function 
-        renderListWithTemplate(productCardTemplate, this.listElement, list);
+     // const htmlStrings = list.map(productCardTemplate);
+     // this.listElement.insertAdjacentHTML("afterbegin", htmlStrings.join(""));
+
+     // apply use new utility function instead of the commented code above
+     renderListWithTemplate(productCardTemplate, this.listElement, list);
     }
 }

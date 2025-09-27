@@ -14,7 +14,7 @@ export default class ProductDetails {
     this.product = await this.dataSource.findProductById(this.productId);
    
      // the product details are needed before rendering the HTML
-    document.querySelector('.product-detail').innerHTML = this.renderProductDetails()
+    this.renderProductDetails()
     // once the HTML is rendered, add a listener to the Add to Cart button
     // Notice the .bind(this). This callback will not work if the bind(this) is missing. Review the readings from this week on 'this' to understand why.
     document.getElementById('addToCart').addEventListener('click', this.addProductToCart.bind(this));
@@ -37,7 +37,7 @@ renderProductDetails() {
             <h2 class="divider">${this.product.NameWithoutBrand}</h2>
             <img
                 class="divider"
-                src="${this.product.Image}"
+                src="${this.product.Images.PrimaryLarge}"
                 alt="${this.product.NameWithoutBrand}"
             />
 
