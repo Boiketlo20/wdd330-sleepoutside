@@ -76,3 +76,24 @@ export async function loadHeaderFooter(){
   const footerElement = document.querySelector("#main-footer");
   renderWithTemplate(footerTemplate, footerElement);
 }
+
+export function updateCartBadge() {
+  const cartItems = JSON.parse(localStorage.getItem(CARTKEY)) || [];
+  const count = cartItems.reduce((total, item) => total + (item.qty || 1), 0);
+
+  const cart = document.querySelector(".cart");
+  let badge = cart.querySelector(".cart-badge");
+
+  if (count > 0) {
+    if (!badge) {
+      badge = document.createElement("span");
+      badge.classList.add("cart-badge");
+      cart.appendChild(badge);
+    }
+    badge.textContent = count;
+  } else {
+    if (badge) {
+      badge.remove();
+    }
+  }
+}
